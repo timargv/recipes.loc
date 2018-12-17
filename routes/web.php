@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/welcome', function () {
+    return view('layouts.welcome');
+})->name('welcome');
 
 Auth::routes();
 
@@ -26,6 +29,14 @@ Route::group([
         Route::get('/edit', 'HomeController@edit')->name('edit');
         Route::put('/update', 'HomeController@update')->name('update');
     });
+
+    Route::group(['prefix' => 'people', 'as' => 'people.', 'namespace' => 'People',], function () {
+        Route::get('/', 'PeopleController@index')->name('users');
+        Route::post('ajaxRequest', 'PeopleController@ajaxRequest')->name('ajaxRequest');
+    });
+    Route::get('/{user}', 'People\PeopleController@show')->name('user.show');
+
+
 
 });
 

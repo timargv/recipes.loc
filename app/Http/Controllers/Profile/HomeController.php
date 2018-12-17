@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Auth;
  */
 class HomeController extends Controller
 {
-    //
-
     private $service;
 
     public function __construct(ProfileService $service)
@@ -23,10 +21,10 @@ class HomeController extends Controller
         $this->service = $service;
     }
 
-    public function index () {
+    public function index (User $id) {
         $title = 'Profile';
         $user = Auth::user();
-        return view('profile.index', compact('title', 'user'));
+        return view('profile.index', compact('title', 'user', 'id'));
     }
 
     public function edit()
@@ -43,6 +41,6 @@ class HomeController extends Controller
         } catch (\DomainException $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
-        return redirect()->route('profile.home');
+        return redirect()->route('profile.edit');
     }
 }

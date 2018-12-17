@@ -11,6 +11,7 @@ class ProfileService
     {
         /** @var User $user */
         $user = User::findOrFail($id);
+        $user->generatePassword($request->get('password'));
         $user->update($request->only('name', 'last_name', 'first_name'));
     }
 }

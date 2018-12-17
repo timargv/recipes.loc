@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ $title }}</div>
 
@@ -37,8 +37,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input id="password" placeholder="" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required>
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback"><strong>{{ $errors->first('password') }}</strong></span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
                                 <label for="name" class="col-form-label">Email</label>
-                                <input id="name" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', $user->email) }}" required>
+                                <input id="name" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email', $user->email) }}" required disabled>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback"><strong>{{ $errors->first('email') }}</strong></span>
                                 @endif
@@ -53,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-2"></div>
         </div>
     </div>
 @endsection

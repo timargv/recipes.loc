@@ -23,9 +23,12 @@ class HomeController extends Controller
         } return view('auth.login');
     }
 
-    public function feed () {
+    public function feed (Request $request) {
+
         $title = 'Лента';
-        return view('home', compact('title'));
+        $user = User::find($request->user()->id);
+        $followings = $user->followings()->get();
+        return view('home', compact('title', 'followings'));
     }
 
 

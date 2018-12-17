@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ $title }}</div>
 
@@ -17,6 +17,11 @@
                     You are logged in!
                 </div>
             </div>
+        </div>
+        <div class="col-2">
+            @foreach($followings as $following)
+                {{ $following->name }}
+                @endforeach
         </div>
     </div>
 </div>

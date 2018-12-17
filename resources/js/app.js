@@ -7,7 +7,57 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+$('ul.pagination').hide();
+$(function() {
+    $('.infinite-scroll').jscroll({
+        autoTrigger: true,
+        loadingHtml: '<div class="text-center py-3"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span></div>',
+        padding: 0,
+        nextSelector: '.pagination li.active + li a',
+        contentSelector: 'div.infinite-scroll',
+        callback: function() {
+            $('ul.pagination').remove();
+        }
+    });
+});
+
+$(document).ready(function() {
+
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+    $('.action-follow').click(function(){
+        var user_id = $(this).data('id');
+        var cObj = $(this);
+        var c = $(this).parent("div").find(".tl-follower").text();
+
+
+        $.ajax({
+            type:'POST',
+            url:'/people/ajaxRequest',
+            data:{user_id:user_id},
+        success:function(data){
+            console.log(data.success);
+            if(jQuery.isEmptyObject(data.success.attached)){
+                cObj.find("strong").text("Подписаться").addClass("btn-info text-white");
+                cObj.parent("div").find(".tl-follower").text(parseInt(c)-1);
+            }else{
+                cObj.find("strong").text("Отписаться").removeClass("btn-info text-white");
+                cObj.parent("div").find(".tl-follower").text(parseInt(c)+1);
+            }
+        }
+    });
+    });
+
+
+});
+
+// window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -17,7 +67,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
@@ -28,6 +78,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
