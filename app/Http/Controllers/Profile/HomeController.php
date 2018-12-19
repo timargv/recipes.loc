@@ -23,17 +23,23 @@ class HomeController extends Controller
         $this->service = $service;
     }
 
-    public function index (User $user) {
+    public function index (Request $request, User $user) {
         $title = 'Profile';
         $title_wall = 'Wall Messages';
         $user = Auth::user();
+
+        $user_id = User::find($request->user()->id);
+        $followers = $user->followers()->get();
+        $followers_count = $user->followers()->count();
+        $followings = $user_id->followings()->take(6)->get();
+        $followings_count = $user_id->followings()->count();
 
         $wall_messages = Wall::forUser(Auth::user())->orderByDesc('updated_at')->paginate(20);
 
 
         if ($wall_messages == null) {
-            return view('profile.index', compact('title', 'title_wall'))->with('info', 'У Вас нет Записей');
-        } return view('profile.index', compact('title', 'title_wall', 'user', 'wall_messages'));
+            return view('profile.index', compact('title', 'title_wall', 'followings', 'followings_count', 'followers', 'followers_count'))->with('info', 'У Вас нет Записей');
+        } return view('profile.index', compact('title', 'title_wall', 'user', 'wall_messages', 'followings', 'followings_count', 'followers', 'followers_count'));
 
     }
 

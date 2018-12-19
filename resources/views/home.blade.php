@@ -19,15 +19,7 @@
             </div>
         </div>
         <div class="col-2">
-            <ul class="nav">
-                @foreach($followings as $following)
-                    @if($following->first_name == null ||  $following->last_name == null)
-                        <li class="nav-item"><a href="{{ route('user.show', $following) }}">{{ $following->name }}</a></li>
-                    @else
-                        <li class="nav-item"><a href="{{ route('user.show', $following) }}">{{ $following->first_name }} {{ $following->last_name  }}</a></li>
-                    @endif
-                @endforeach
-            </ul>
+            @include('follows._followings_profile', $followings)
         </div>
     </div>
 </div>
