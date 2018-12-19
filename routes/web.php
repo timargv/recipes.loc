@@ -28,6 +28,9 @@ Route::group([
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/edit', 'HomeController@edit')->name('edit');
         Route::put('/update', 'HomeController@update')->name('update');
+
+        Route::post('/', 'HomeController@store')->name('wall.messages.store');
+
     });
 
     Route::group(['prefix' => 'people', 'as' => 'people.', 'namespace' => 'People',], function () {

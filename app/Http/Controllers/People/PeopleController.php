@@ -13,8 +13,10 @@ class PeopleController extends Controller
         $title = "Люди";
         $query = User::orderByDesc('id');
 
-        if (!empty($value = $request->get('name'))) {
-            $query->where('name', 'like', '%' . $value . '%');
+        if (!empty($value = $request->get('search'))) {
+            $query->where('name', 'like', '%' . $value . '%')
+                ->orWhere('first_name', 'like', '%' . $value . '%')
+            ->orWhere('last_name', 'like', '%' . $value . '%');
         }
 
         $users = $query->paginate(5);
@@ -23,7 +25,8 @@ class PeopleController extends Controller
     }
 
     public function show (User $user) {
-        return view('users.show', compact('user'));
+        $followers = $user->followers()->get();
+        return view('users.show', compact('user', 'followers'));
     }
 
     public function ajaxRequest(Request $request){

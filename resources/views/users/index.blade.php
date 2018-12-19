@@ -5,7 +5,18 @@
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">{{ $title }}</div>
+                    <div class="card-header">
+                        <span>{{ $title }}</span>
+                        <form class="form-inline mr-0 pr-0 float-right col-4">
+                            <div class="form-row align-items-center  w-100" action="?" method="GET">
+                                <div class=" w-100">
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control mb-0 form-control-sm" id="inlineFormInput" placeholder="Найти">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
                     <div class="card-body">
                         @if (session('status'))

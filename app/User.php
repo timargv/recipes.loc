@@ -47,4 +47,11 @@ class User extends Authenticatable
             $this->save();
         }
     }
+
+    public function walls()
+    {
+        return $this->hasMany(Wall::class);
+    }
+
+
 }

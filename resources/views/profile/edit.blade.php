@@ -38,7 +38,7 @@
 
                             <div class="form-group">
                                 <label for="password" class="col-form-label">Password</label>
-                                <input id="password" placeholder="" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}" required>
+                                <input id="password" placeholder="" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{ old('password') }}">
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback"><strong>{{ $errors->first('password') }}</strong></span>
                                 @endif

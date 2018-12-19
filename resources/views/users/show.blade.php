@@ -20,8 +20,17 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        {{ $user->followers()->get() }}
+                        <ul>
+                            <li><b>Ник:</b> {{ $user->name }}</li>
+                        </ul>
+                        <ul>
+                            <li><b>Имя:</b> {{ $user->first_name }}</li>
+                                <li><b>Фамилия:</b> {{ $user->last_name }}</li>
+                            </ul>
+                        <ul>
+                            <li><b>E-mail:</b> {{ $user->email }}</li>
+                        </ul>
+                        @include('follows._followers_user', $followers)
                     </div>
                 </div>
             </div>
