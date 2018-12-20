@@ -17,9 +17,11 @@
                     You are logged in!
                 </div>
             </div>
+
+            @include('profile.wall.wall_followings', $wall_messages)
         </div>
         <div class="col-2">
-            @include('follows._followings_profile', $followings)
+{{--            @include('follows._followings_profile', $followings)--}}
         </div>
     </div>
 </div>

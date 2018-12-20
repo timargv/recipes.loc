@@ -24,6 +24,7 @@ class ProfileEditRequest extends FormRequest
 //            'name' => 'required|string|max:255|unique:users,id,' . $userss->id,
             'name' => [
                 'required',
+                'alpha_dash',
                 'string',
                 'max:255',
                 Rule::unique('users')->ignore($user->id),

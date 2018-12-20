@@ -24,58 +24,36 @@
                 </div>
             </div>
             <div class="col-4 ml-0">
+                @if($followings_title)
                 <div class="card">
                     <div class="card-header">
-                        Подписки - {{ $followings_count }}
+                        {{ $followings_title }}
                     </div>
 
                     <div class="card-body">
                         @include('follows._followings_profile', $followings)
                     </div>
                 </div>
+                @endif
 
-                <div class="card my-3">
+                @if($followers)
+                <div class="card @if($followings) my-3 @else mb-3 @endif">
                     <div class="card-header">
-                        Подписчики - {{ $followers_count }}
+                        {{ $followers_title }}
                     </div>
 
                     <div class="card-body">
                         @include('follows._followers_user', $followers)
                     </div>
                 </div>
+                @endif
             </div>
         </div>
 
-        <div class="card my-3">
-            <div class="card-header">
-                {{ $title_wall }}
-            </div>
 
-            <div class="card-body">
-                <form action="{{ route('profile.wall.messages.store', $user) }}" method="POST">
-                    @csrf
 
-                    <div class="form-group">
-                        <input id="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required>
-                        @if ($errors->has('title'))
-                            <span class="invalid-feedback"><strong>{{ $errors->first('title') }}</strong></span>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" rows="5" required>{{ old('description') }}</textarea>
-                        @if ($errors->has('description'))
-                            <span class="invalid-feedback"><strong>{{ $errors->first('description') }}</strong></span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        @include('profile._messages_wall', $wall_messages)
+        @include('profile.wall.create_messages')
+        @include('profile.wall.messages', $wall_messages)
 
     </div>
 @endsection

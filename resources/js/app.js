@@ -39,7 +39,7 @@ $(document).ready(function() {
 
         $.ajax({
             type:'POST',
-            url:'/people/ajaxRequest',
+            url:'/ajaxRequest',
             data:{user_id:user_id},
         success:function(data){
             console.log(data.success);

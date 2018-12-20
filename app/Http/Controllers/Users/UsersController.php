@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\People;
+namespace App\Http\Controllers\Users;
 
 use App\User;
 use App\Wall;
@@ -8,17 +8,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class PeopleController extends Controller
+class UsersController extends Controller
 {
+    // Все пользователи сайта
     public function index(Request $request)
     {
+        // Название Страницы
         $title = "Люди";
+
         $query = User::orderByDesc('id');
 
         if (!empty($value = $request->get('search'))) {
             $query->where('name', 'like', '%' . $value . '%')
                 ->orWhere('first_name', 'like', '%' . $value . '%')
-            ->orWhere('last_name', 'like', '%' . $value . '%');
+                ->orWhere('last_name', 'like', '%' . $value . '%');
         }
 
         $users = $query->paginate(5);
@@ -26,23 +29,21 @@ class PeopleController extends Controller
         return view('users.index', compact('users', 'title'));
     }
 
-    public function show (User $user) {
+//    // Показать одного пользователя
+//    public function show(User $user) {
+//
+//        $title_wall = 'Wall';
+//
+//        $wall_messages_query = Wall::orderBy('created_at');
+//        $wall_messages_query->where('user_id', $user->id);
+//
+//
+//        $wall_messages = $wall_messages_query->paginate(5);
+//
+//        return view('users.show', compact('user', 'title_wall', 'wall_messages'));
+//    }
 
-        $title_wall = 'Wall Messages';
-        $followers = $user->followers()->get();
-        $followers_count = $user->followers()->count();
-
-        $followings = $user->followings()->take(6)->get();
-        $followings_count = $user->followings()->count();
-
-
-        $wall_messages = Wall::forUser($user)->orderByDesc('updated_at')->paginate(20);
-
-        if ($user != Auth::user()) {
-            return view('users.show', compact('user', 'followers', 'followers_count', 'title_wall', 'wall_messages', 'followings', 'followings_count'));
-        } return redirect()->route('profile.home');
-    }
-
+    // Подписаться на Пользователя
     public function ajaxRequest(Request $request){
 
         if ($request->ajax()) {

@@ -12,32 +12,37 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/welcome', function () {
-    return view('layouts.welcome');
-})->name('welcome');
 
 Auth::routes();
 
 Route::group([
     'middleware' => ['auth'],
 ], function () {
-	
-	Route::get('/feed', 'HomeController@feed')->name('feed');
 
-    Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Profile',], function () {
-        Route::get('/', 'HomeController@index')->name('home');
-        Route::get('/edit', 'HomeController@edit')->name('edit');
-        Route::put('/update', 'HomeController@update')->name('update');
+    Route::group(['as' => 'profile.', 'namespace' => 'Profile'], function () {
+        Route::get('/feed', 'ProfileController@feed')->name('feed');
+        Route::get('/id{user}', 'ProfileController@show')->name('show');
+        Route::get('/edit', 'ProfileController@edit')->name('edit');
+        Route::put('/update', 'ProfileController@update')->name('update');
 
-        Route::post('/', 'HomeController@store')->name('wall.messages.store');
+        Route::group(['as' => 'wall.messages.', 'namespace' => 'Wall'], function () {
+            Route::post('/', 'WallPostsController@store')->name('store');
+            Route::delete('/{message}', 'WallPostsController@wall_message_destroy')->name('destroy');
+        });
 
     });
 
-    Route::group(['prefix' => 'people', 'as' => 'people.', 'namespace' => 'People',], function () {
-        Route::get('/', 'PeopleController@index')->name('users');
-        Route::post('ajaxRequest', 'PeopleController@ajaxRequest')->name('ajaxRequest');
+    Route::group(['as' => 'user.', 'namespace' => 'Users'], function () {
+        Route::get('/people', 'UsersController@index')->name('index');
+        Route::post('ajaxRequest', 'UsersController@ajaxRequest')->name('ajaxRequest');
+
+
+        Route::group(['as' => 'wall.', 'namespace' => 'Wall'], function () {
+            Route::get('/wall{user}', 'WallPostsController@index')->name('index');
+            Route::get('/wall{user}_{message}', 'WallPostsController@show')->name('show');
+        });
+
     });
-    Route::get('/{user}', 'People\PeopleController@show')->name('user.show');
 
 
 

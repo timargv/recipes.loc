@@ -16,7 +16,7 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('profile.home') }}">{{ __('Моя страница') }}</a>
+                <a class="dropdown-item" href="{{ route('profile.show', auth()->user()) }}">{{ __('Моя страница') }}</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Редактировать') }}</a>
                 <div class="dropdown-divider"></div>

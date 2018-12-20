@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}" style="width: 11.3rem">
+                <a class="navbar-brand" href="{{ url('/feed') }}" style="width: 11.3rem">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -46,7 +46,10 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-2">@include('layouts._nav_left')</div>
-                    <div class="col-10">@yield('content')</div>
+                    <div class="col-10">
+                        @include('layouts.partials.flash')
+                        @yield('content')
+                    </div>
                 </div>
             </div>
         </main>

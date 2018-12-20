@@ -1,7 +1,7 @@
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('people.users') }}">Люди</a>
+            <a class="nav-link" href="{{ route('user.index') }}">Люди</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Рецепты</a>

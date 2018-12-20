@@ -31,38 +31,37 @@
                 </div>
             </div>
             <div class="col-4 ml-0">
-                <div class="card">
-                    <div class="card-header">
-                        Подписки - {{ $followings_count }}
-                    </div>
 
-                    <div class="card-body">
-                        @include('follows._followings_profile', $followings)
-                    </div>
-                </div>
+                @if(count($followings))
+                    <div class="card">
+                        <div class="card-header">
+                            {{ $followings_title }}
+                        </div>
 
-                <div class="card my-3">
-                    <div class="card-header">
-                        Подписчики - {{ $followers_count }}
+                        <div class="card-body">
+                            @include('follows._followings_profile', $followings)
+                        </div>
                     </div>
+                @endif
 
-                    <div class="card-body">
-                        @include('follows._followers_user', $followers)
+                @if(count($followers))
+                    <div class="card @if(count($followings)) my-3 @else mb-3 @endif">
+                        <div class="card-header">
+                            {{ $followers_title }}
+                        </div>
+
+                        <div class="card-body">
+                            @include('follows._followers_user', $followers)
+                        </div>
                     </div>
-                </div>
+                @endif
+
             </div>
 
         </div>
 
-        <div class="card my-3">
-            <div class="card-header">
-                {{ $title_wall }}
-            </div>
-
-
-        </div>
-
-        @include('profile._messages_wall', $wall_messages)
+        {{--@include('users.wall.create_messages')--}}
+        @include('users.wall.messages', $wall_messages)
 
     </div>
 

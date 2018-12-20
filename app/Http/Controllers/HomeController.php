@@ -17,19 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::check()) {
-
-            return redirect()->route('feed');
-
+            return redirect()->route('profile.feed');
         } return view('auth.login');
     }
-
-    public function feed (Request $request) {
-
-        $title = 'Лента';
-        $user = User::find($request->user()->id);
-        $followings = $user->followings()->get();
-        return view('home', compact('title', 'followings'));
-    }
-
 
 }
