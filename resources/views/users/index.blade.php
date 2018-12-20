@@ -35,7 +35,13 @@
                                             <div class="col-10 pl-0 pt-2">
                                                 <div class="row">
                                                     <div class="col-8 font-weight-bold ">
-                                                        <a class="text-dark" href="{{ route('profile.show', $user) }}">{{ $user->name }}</a>
+                                                        <a class="text-dark" href="{{ route('profile.show', $user) }}">
+                                                            @if ($user->first_name && $user->last_name)
+                                                                {{ $user->first_name }} {{ $user->last_name }}
+                                                            @else
+                                                                {{ $user->name }}
+                                                            @endif
+                                                        </a>
                                                     </div>
                                                     <div class="col-4">
                                                         @if(auth()->user()->isFollowing($user))

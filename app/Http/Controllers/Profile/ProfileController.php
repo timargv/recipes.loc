@@ -56,11 +56,11 @@ class ProfileController extends Controller
 
         //        $user_id = User::find($request->user()->id);
 
-        $followings = Auth::user()->followings()->get();
+        $followings = Auth::user()->followings()->pluck('id')->all();
 
+        $wall_messages_id = Wall::whereIn('user_id', $followings)->pluck('id');
 
-        $wall_messages = Wall::where('user_id', '=', [1,2])->paginate(10);
-
+        $wall_messages = Wall::whereIn('id', $wall_messages_id)->orderByDesc('created_at')->paginate(5);
 
         return view('home', compact('title', 'followings', 'user', 'wall_messages'));
     }

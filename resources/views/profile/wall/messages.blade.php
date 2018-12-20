@@ -8,14 +8,18 @@
                 <form method="POST" action="{{ route('profile.wall.messages.destroy', $message) }}" class="mr-l float-right">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger btn-sm">Delete</button>
                 </form>
+                <div class="float-right mr-2 pt-1">ID:{{ $message->user_id  }}</div>
             </div>
 
             <div class="card-body">
                 <p>
                     {{ $message->description }}
                 </p>
+            </div>
+            <div class="card-footer">
+                {{ $message->created_at }}
             </div>
         </div>
     @endforeach

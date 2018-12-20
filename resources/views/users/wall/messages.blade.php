@@ -4,12 +4,16 @@
             <div class="card my-3">
                 <div class="card-header">
                     {{ $message->title  }}
+                    <span class="float-right">ID:{{ $message->user_id  }}</span>
                 </div>
 
                 <div class="card-body">
                     <p>
                         {{ $message->description }}
                     </p>
+                </div>
+                <div class="card-footer">
+                    {{ $message->created_at }}
                 </div>
             </div>
         @endforeach

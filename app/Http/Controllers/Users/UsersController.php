@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\UseCases\Users\SearchService;
 use App\User;
 use App\Wall;
 use Illuminate\Http\Request;
@@ -10,21 +11,29 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    private $search;
+
+    public function __construct(SearchService $search)
+    {
+        $this->search = $search;
+    }
+
     // Все пользователи сайта
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
         // Название Страницы
         $title = "Люди";
 
-        $query = User::orderByDesc('id');
+        $q = $request->get('search');
 
-        if (!empty($value = $request->get('search'))) {
-            $query->where('name', 'like', '%' . $value . '%')
-                ->orWhere('first_name', 'like', '%' . $value . '%')
-                ->orWhere('last_name', 'like', '%' . $value . '%');
+
+
+        $max_page = 30;
+        if (empty($q)) {
+            $users = User::orderByDesc('id')->paginate(5);
+        } else {
+            $users = $this->search->search($q, $max_page);
         }
-
-        $users = $query->paginate(5);
 
         return view('users.index', compact('users', 'title'));
     }

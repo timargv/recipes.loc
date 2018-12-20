@@ -1,15 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: T_V
+ * Date: 20.12.2018
+ * Time: 22:22
+ */
 
-namespace App\Http\Controllers\Users;
+namespace App\UseCases\Users;
+
 
 use App\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class SearchController extends Controller
+class SearchService
 {
-
     public function search($search, $count){
+
         $query = mb_strtolower($search, 'UTF-8');
         $arr = explode(" ", $query); //разбивает строку на массив по разделителю
         /*
