@@ -11,8 +11,8 @@
     @endif
     @else
 
-        <li class="nav-item pl-2"><a class="nav-link py-0" href="{{ route('profile.feed') }}"><i class="fa fa-heart-o"></i></a></li>
-        <li class="nav-item pl-2"><a class="nav-link py-0" href="{{ route('profile.show',  auth()->user()) }}"><i class="fa fa-user-o"></i></a></li>
+        <li class="nav-item pl-sm-2 py-2 py-sm-0 "><a class="nav-link py-0" href="{{ route('profile.feed') }}"><i class="fa fa-heart-o fa-fw d-sm-inline"></i> <span class="pl-2 d-inline d-sm-none">Мне Нравится</span> </a></li>
+        <li class="nav-item pl-sm-2 py-2 py-sm-0 "><a class="nav-link py-0" href="{{ route('profile.show',  auth()->user()) }}"><i class="fa fa-user-o fa-fw d-sm-inline"></i> <span class="pl-2 d-inline d-sm-none">Моя Страница</span> </a></li>
 
         {{--<li class="nav-item dropdown">--}}
             {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}

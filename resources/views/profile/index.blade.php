@@ -11,7 +11,7 @@
 @section('content')
     <div class="">
         <div class="row">
-            <div class="col-12 pr-0">
+            <div class="col-12 pr-sm-0">
                 <div class="card">
                     {{--<div class="card-header">--}}
                         {{--{{ $title }}--}}
@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4">
-
+                                <img class="rounded-circle" src="https://via.placeholder.com/115/DDDDDD/FFFFFF/" alt="Card image">
                             </div>
 
                             <div class="col-8">

@@ -9,11 +9,9 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-
-
-            <div class="col-8 pr-0">
+    <div class="">
+        <div class="row">
+            <div class="col-12 pr-sm-0">
                 <div class="card">
                     <div class="card-header">
                         {{ $user->name }}
@@ -25,20 +23,28 @@
                     </div>
 
                     <div class="card-body">
-                        <ul>
-                            <li><b>Ник:</b> {{ $user->name }}</li>
-                        </ul>
-                        <ul>
-                            <li><b>Имя:</b> {{ $user->first_name }}</li>
-                            <li><b>Фамилия:</b> {{ $user->last_name }}</li>
-                        </ul>
-                        <ul>
-                            <li><b>E-mail:</b> {{ $user->email }}</li>
-                        </ul>
+                        <div class="row">
+                            <div class="col-4">
+                                <img class="rounded-circle" src="https://via.placeholder.com/115/DDDDDD/FFFFFF/" alt="Card image">
+                            </div>
+
+                            <div class="col-8">
+                                <ul>
+                                    <li><b>Ник:</b> {{ $user->name }}</li>
+                                </ul>
+                                <ul>
+                                    <li><b>Имя:</b> {{ $user->first_name }}</li>
+                                    <li><b>Фамилия:</b> {{ $user->last_name }}</li>
+                                </ul>
+                                <ul>
+                                    <li><b>E-mail:</b> {{ $user->email }}</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4 ml-0">
+            <div class="col-sm-4 ml-sm-0 mt-sm-0 mt-3">
 
                 @if(count($followings))
                     <div class="card">

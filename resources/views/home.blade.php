@@ -5,7 +5,7 @@
 @section('content')
     <div class="">
         <div class="row">
-        <div class="col-8 ">
+        <div class="col-sm-8 ">
             <div class="card mb-4">
                 <div class="card-header">{{ $title }}</div>
 
@@ -22,7 +22,7 @@
 
             @include('profile.wall.wall_followings', $wall_messages)
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
             @if(auth()->user()->followings->count())
                 <div class="card">
                     <div class="card-header">

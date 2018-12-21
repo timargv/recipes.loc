@@ -9,13 +9,13 @@
 @endsection
 
 @section('content')
-    <div class="ml-3">
+    <div class="ml-sm-3">
         <div class="row">
-            <div class="col-8 pr-0">
+            <div class="col-sm-8 pr-sm-0">
                 <div class="card">
                     <div class="card-header">
                         <span>{{ $title }}</span>
-                        <form class="form-inline mr-0 pr-0 float-right col-4">
+                        <form class="form-inline mr-0 pr-0 float-right col-8">
                             <div class="form-row align-items-center  w-100" action="?" method="GET">
                                 <div class=" w-100">
                                     <div class="input-group">
@@ -44,10 +44,10 @@
                                 @foreach($users as $user)
                                     <li class="list-group-item px-0 ">
                                         <div class="row">
-                                            <div class="col-2">
+                                            <div class="col-3 col-sm-2">
                                                 <img src="https://pp.userapi.com/c623928/v623928512/35f14/MweWozAQs_U.jpg" class="w-100 rounded-circle float-left" alt="...">
                                             </div>
-                                            <div class="col-10 pl-0 pt-2">
+                                            <div class="col-9 col-sm-10 pl-0 pt-2">
                                                 <div class="row">
                                                     <div class="col-8 font-weight-bold ">
                                                         <a class="text-dark" href="{{ route('profile.show', $user) }}">
@@ -85,7 +85,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 d-sm-block">
+                ss
             </div>
         </div>
     </div>

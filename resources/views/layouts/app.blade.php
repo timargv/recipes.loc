@@ -21,8 +21,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/feed') }}" style="width: 11.3rem">
@@ -42,7 +41,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="app-content py-4 mb-5 mb-sm-0">
             <div class="container">
                 <div class="row justify-content-center">
 {{--                    <div class="col-2">@include('layouts._nav_left')</div>--}}
@@ -53,8 +52,12 @@
                 </div>
             </div>
         </main>
-    </div>
 
+        <footer class="bg-white fixed-bottom d-sm-none">
+            <div class="container">
+                @include('layouts._nav_footer')
+            </div>
+        </footer>
 
     @yield('js')
 
