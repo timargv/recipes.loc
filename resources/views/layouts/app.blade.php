@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title_page', 'Laravel')</title>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -45,8 +45,8 @@
         <main class="py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-2">@include('layouts._nav_left')</div>
-                    <div class="col-10">
+{{--                    <div class="col-2">@include('layouts._nav_left')</div>--}}
+                    <div class="col-12">
                         @include('layouts.partials.flash')
                         @yield('content')
                     </div>

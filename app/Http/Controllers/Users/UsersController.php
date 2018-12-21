@@ -8,6 +8,7 @@ use App\Wall;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -24,13 +25,27 @@ class UsersController extends Controller
         // Название Страницы
         $title = "Люди";
 
-        $q = $request->get('search');
+        $this->validate($request, [
+            'search' => 'nullable|string|max:255',
+        ]);
+
+        // removing symbols used by MySQL
+        $reservedSymbols = ['-', '+', '<', '>', '@', '(', ')', '~'];
+        $term = $request->get('search');
+
+        $q = str_replace($reservedSymbols, '', $term);
 
 
 
         $max_page = 30;
         if (empty($q)) {
-            $users = User::orderByDesc('id')->paginate(5);
+//            $users = DB::table('users')->max()->paginate(20);
+            $users = User::leftJoin('followables','users.id','=','followables.followable_id')->
+            selectRaw('users.*, count(followables.followable_id) AS `count`')->
+            groupBy('users.id')->
+            orderBy('count', 'DESC')->
+            paginate(12);
+
         } else {
             $users = $this->search->search($q, $max_page);
         }

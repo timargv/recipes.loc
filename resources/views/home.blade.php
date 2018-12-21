@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
+@section('title_page', 'Мне Интересно')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
+    <div class="">
+        <div class="row">
+        <div class="col-8 ">
+            <div class="card mb-4">
                 <div class="card-header">{{ $title }}</div>
 
                 <div class="card-body">
@@ -20,8 +22,18 @@
 
             @include('profile.wall.wall_followings', $wall_messages)
         </div>
-        <div class="col-2">
-{{--            @include('follows._followings_profile', $followings)--}}
+        <div class="col-4">
+            @if(auth()->user()->followings->count())
+                <div class="card">
+                    <div class="card-header">
+                        {{ __('Интересные люди') }}
+                    </div>
+
+                    <div class="card-body">
+                        @include('follows._followings_profile', $followings = auth()->user()->followings)
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -53,7 +53,10 @@ class SearchController extends Controller
         $qQeury = implode(" ", $query); //объединяет массив в строку
         // Таблица для поиска
         $users = User::whereRaw("MATCH(name, first_name, last_name) AGAINST(? IN BOOLEAN MODE)", // name,email - поля, по которым нужно искать
-            $qQeury)->paginate($count) ;
+            $qQeury)->leftJoin('followables','users.id','=','followables.followable_id')->
+        selectRaw('users.*, count(followables.followable_id) AS `count`')->
+        groupBy('users.id')->
+        orderBy('count', 'DESC')->paginate($count) ;
         return $users;
     }
 }

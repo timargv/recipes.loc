@@ -1,9 +1,17 @@
 @extends('layouts.app')
 
+@section('title_page')
+    @if(old('search'))
+        Поиск людей по запросу {{ old('search') }}
+    @else
+        Поиск людей
+    @endif
+@endsection
+
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
+    <div class="ml-3">
+        <div class="row">
+            <div class="col-8 pr-0">
                 <div class="card">
                     <div class="card-header">
                         <span>{{ $title }}</span>
@@ -26,6 +34,13 @@
                         @endif
                             <ul class="list-group list-group-flush">
                             <div class="infinite-scroll">
+
+                                @if(!$users->count())
+                                    <div class="text-center my-5 text-muted w-100">
+                                        Ваш запрос не дал результатов
+                                    </div>
+                                @endif
+
                                 @foreach($users as $user)
                                     <li class="list-group-item px-0 ">
                                         <div class="row">
@@ -70,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-4">
             </div>
         </div>
     </div>

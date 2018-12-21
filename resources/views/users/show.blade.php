@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title_page')
+    @if ($user->first_name && $user->last_name)
+        {{ $user->first_name }} {{ $user->last_name }}
+    @else
+        {{ $user->name }}
+    @endif
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">

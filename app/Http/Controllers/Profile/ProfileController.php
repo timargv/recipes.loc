@@ -38,9 +38,9 @@ class ProfileController extends Controller
         $followings_title = 'Подписки: ' . $user->followings()->count();
         $followings  = $user->followings()->take(6)->get();
 
-        $wall_messages_query = Wall::orderBy('created_at');
+        $wall_messages_query = Wall::orderByDesc('created_at');
         $wall_messages_query->where('user_id', $user->id);
-        $wall_messages = $wall_messages_query->paginate(5);
+        $wall_messages = $wall_messages_query->paginate(6);
 
         if ($user == Auth::user()) {
             return view('profile.index', compact('title', 'user', 'title_wall', 'wall_messages', 'followers', 'followers_title', 'followings', 'followings_title'));

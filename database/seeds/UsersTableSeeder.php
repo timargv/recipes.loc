@@ -37,6 +37,8 @@ class UsersTableSeeder extends Seeder
             ['user_id' => '1', 'followable_id' => '2', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
             ['user_id' => '1', 'followable_id' => '3', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
             ['user_id' => '1', 'followable_id' => '4', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
+            ['user_id' => '1', 'followable_id' => '6', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
+            ['user_id' => '1', 'followable_id' => '7', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
             ['user_id' => '2', 'followable_id' => '5', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
             ['user_id' => '2', 'followable_id' => '3', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null],
             ['user_id' => '2', 'followable_id' => '4', 'followable_type' => 'App\User', 'relation' => 'follow', 'deleted_at' => null, 'created_at' => '2018-12-17 19:08:31', 'updated_at' => null]

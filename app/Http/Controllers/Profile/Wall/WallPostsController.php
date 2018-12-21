@@ -38,6 +38,8 @@ class WallPostsController extends Controller
             $message->delete();
             return back()->with('success', 'Удалено');
         }
-        return redirect()->route('profile.show', Auth::user())->with('warning', 'У Вас нет прав');
+        return back()->with('error', 'У Вас нет прав');
+
+//        return redirect()->route('profile.show', Auth::user())->with('warning', 'У Вас нет прав');
     }
 }

@@ -13,5 +13,25 @@
 
 .navbar-laravel {
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid #eee;
+  padding: .6rem 1rem;
+}
+
+.navbar-nav .fa {
+  font-size: 22px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+.profile_wall_message .card-header a.link {
+  text-decoration: none;
+}
+
+.profile_wall_message_text {
+  max-height: 44px;
+  overflow: hidden;
 }
