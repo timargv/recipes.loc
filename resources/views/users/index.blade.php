@@ -13,13 +13,13 @@
         <div class="row">
             <div class="col-sm-8 pr-sm-0">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-transparent pr-3">
                         <span>{{ $title }}</span>
                         <form class="form-inline mr-0 pr-0 float-right col-8">
                             <div class="form-row align-items-center  w-100" action="?" method="GET">
                                 <div class=" w-100">
                                     <div class="input-group">
-                                        <input type="text" name="search" class="form-control mb-0 form-control-sm" id="inlineFormInput" placeholder="Найти">
+                                        <input type="text" name="search" class="bg-light text-dark form-control mb-0 form-control-sm" id="inlineFormInput" placeholder="Найти">
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                     <li class="list-group-item px-0 ">
                                         <div class="row">
                                             <div class="col-3 col-sm-2">
-                                                <img src="https://pp.userapi.com/c623928/v623928512/35f14/MweWozAQs_U.jpg" class="w-100 rounded-circle float-left" alt="...">
+                                                <img class="rounded-circle w-100" src="https://via.placeholder.com/115/DDDDDD/FFFFFF/" alt="Card image">
                                             </div>
                                             <div class="col-9 col-sm-10 pl-0 pt-2">
                                                 <div class="row">
@@ -79,7 +79,9 @@
 
                                     </li>
                                 @endforeach
-                                {{ $users->links() }}
+                                <div class="d-sm-block border-top">
+                                    {{ $users->links() }}
+                                </div>
                             </div>
                             </ul>
                     </div>

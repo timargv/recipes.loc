@@ -26,6 +26,7 @@ Route::group([
         Route::put('/update', 'ProfileController@update')->name('update');
 
         Route::group(['as' => 'wall.messages.', 'namespace' => 'Wall'], function () {
+            Route::get('/create', 'WallPostsController@create')->name('create');
             Route::post('/', 'WallPostsController@store')->name('store');
             Route::delete('/{message}', 'WallPostsController@wall_message_destroy')->name('destroy');
         });

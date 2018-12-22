@@ -71,8 +71,17 @@ class UsersController extends Controller
     public function ajaxRequest(Request $request){
 
         if ($request->ajax()) {
-            $user = User::find($request->user_id);
-            $response = auth()->user()->toggleFollow($user);
+
+            if ($request->user_id) {
+                $user = User::find($request->user_id);
+                $response = auth()->user()->toggleFollow($user);
+            }
+
+            if ($request->wall_message_id) {
+                $wall_message = Wall::findOrFail($request->wall_message_id);
+                $response = auth()->user()->toggleLike($wall_message);
+            }
+
             return response()->json(['success' => $response]);
         } return redirect('/');
     }

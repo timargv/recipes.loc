@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFollow\Traits\CanBeFavorited;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 
 class Wall extends Model
 {
     //
+    use CanBeLiked, CanBeFavorited;
 
     protected $table = 'walls';
 

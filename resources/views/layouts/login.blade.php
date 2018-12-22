@@ -80,20 +80,20 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    <div class="top-left links"><a href="{{ route('home') }}">Laravel</a></div>
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ url('/feed') }}">Моя Лента</a>
-                @else
-                    <a href="{{ route('login') }}">Login</a>
+    {{--<div class="top-left links"><a href="{{ route('home') }}">Laravel</a></div>--}}
+    {{--@if (Route::has('login'))--}}
+        {{--<div class="top-right links">--}}
+            {{--@auth--}}
+                {{--<a href="{{ url('/feed') }}">Моя Лента</a>--}}
+            {{--@else--}}
+                {{--<a href="{{ route('login') }}">Login</a>--}}
 
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}">Register</a>
-                    @endif
-                    @endauth
-        </div>
-    @endif
+                {{--@if (Route::has('register'))--}}
+                    {{--<a href="{{ route('register') }}">Register</a>--}}
+                {{--@endif--}}
+            {{--@endauth--}}
+        {{--</div>--}}
+    {{--@endif--}}
 
     <div class="container">
         @yield('content')

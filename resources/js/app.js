@@ -21,6 +21,11 @@ $(function() {
     });
 });
 
+$('textarea.addComment').keyup(function(){
+    $(this).height(10);
+    $(this).height(this.scrollHeight);
+});
+
 $(document).ready(function() {
 
 
@@ -41,17 +46,40 @@ $(document).ready(function() {
             type:'POST',
             url:'/ajaxRequest',
             data:{user_id:user_id},
-        success:function(data){
-            console.log(data.success);
-            if(jQuery.isEmptyObject(data.success.attached)){
-                cObj.find("strong").text("Подписаться").addClass("btn-info text-white");
-                cObj.parent("div").find(".tl-follower").text(parseInt(c)-1);
-            }else{
-                cObj.find("strong").text("Отписаться").removeClass("btn-info text-white");
-                cObj.parent("div").find(".tl-follower").text(parseInt(c)+1);
+            success:function(data){
+                console.log(data.success);
+                if(jQuery.isEmptyObject(data.success.attached)){
+                    cObj.find("strong").text("Подписаться").addClass("btn-info text-white");
+                    cObj.parent("div").find(".tl-follower").text(parseInt(c)-1);
+                }else{
+                    cObj.find("strong").text("Отписаться").removeClass("btn-info text-white");
+                    cObj.parent("div").find(".tl-follower").text(parseInt(c)+1);
+                }
             }
-        }
+        });
     });
+
+    $('.action-like').click(function(){
+        var wall_message_id = $(this).data('id');
+        var cObj = $(this);
+        var c = $(".count-like-" + wall_message_id ).text();
+
+
+        $.ajax({
+            type:'POST',
+            url:'/ajaxRequest',
+            data:{wall_message_id:wall_message_id},
+            success:function(data){
+                console.log(data.success);
+                if(jQuery.isEmptyObject(data.success.attached)){
+                    cObj.find('.fa-heart-o').addClass('fa-heart');
+                    $(".count-like-" + wall_message_id).text(parseInt(c)-1);
+                }else{
+                    cObj.find('.fa-heart').removeClass('fa-heart').addClass('fa-heart-o');
+                    $(".count-like-" + wall_message_id ).text(parseInt(c)+1);
+                }
+            }
+        });
     });
 
 

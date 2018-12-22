@@ -1,4 +1,4 @@
-<?php
+Forgot Your Password?<?php
 
 return [
 

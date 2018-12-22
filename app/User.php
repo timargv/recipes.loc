@@ -7,7 +7,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
+use Overtrue\LaravelFollow\Traits\CanFavorite;
 use Overtrue\LaravelFollow\Traits\CanFollow;
+use Overtrue\LaravelFollow\Traits\CanLike;
 
 /**
  * @property int $id
@@ -20,7 +22,7 @@ use Overtrue\LaravelFollow\Traits\CanFollow;
 
 class User extends Authenticatable
 {
-    use Notifiable, CanFollow, CanBeFollowed;
+    use Notifiable, CanFollow, CanBeFollowed, CanLike, CanFavorite;
 
     /**
      * The attributes that are mass assignable.

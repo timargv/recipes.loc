@@ -15,6 +15,10 @@ class WallPostsController extends Controller
         return view('profile.wall.messages', compact('walls'));
     }
 
+    public function create() {
+        return view('profile.wall.create_messages');
+    }
+
     //
     public function store(Request $request)
     {
