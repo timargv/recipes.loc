@@ -1,4 +1,4 @@
-<div class="ml-3">
+<div class="w-100 ml-md-3">
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}

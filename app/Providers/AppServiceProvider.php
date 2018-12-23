@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Comment;
+use App\Wall;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,9 +13,15 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+
+
+
+
     public function boot()
     {
-        //
+        view()->composer('', function ($view) {
+//            $view->with('WallMessageCommentsCoun', Comment::where('wall_message_id', ()));
+        });
     }
 
     /**

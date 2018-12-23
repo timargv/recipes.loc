@@ -72,10 +72,10 @@ $(document).ready(function() {
             success:function(data){
                 console.log(data.success);
                 if(jQuery.isEmptyObject(data.success.attached)){
-                    cObj.find('.fa-heart-o').addClass('fa-heart');
+                    cObj.find("i").toggleClass("fa-heart-o fa-heart");
                     $(".count-like-" + wall_message_id).text(parseInt(c)-1);
                 }else{
-                    cObj.find('.fa-heart').removeClass('fa-heart').addClass('fa-heart-o');
+                    cObj.find("i").toggleClass("fa-heart fa-heart-o");
                     $(".count-like-" + wall_message_id ).text(parseInt(c)+1);
                 }
             }

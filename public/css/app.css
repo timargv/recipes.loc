@@ -12576,6 +12576,12 @@ a.text-dark:focus {
   clip: auto;
 }
 
+button:focus,
+button:active,
+button:hover {
+  box-shadow: none !important;
+}
+
 .navbar-laravel {
   background-color: #fff;
   border-bottom: 1px solid #eee;
@@ -12614,13 +12620,22 @@ body {
 textarea.addComment {
   height: 28px;
   margin: 0;
+  font-size: 14px;
   resize: none;
   overflow: hidden;
   border-radius: 5px;
-  padding: 4px 15px;
-  width: 93%;
+  padding: 3px 15px;
+  width: 100%;
   border-color: #ddd;
   outline: none;
+}
+
+button.action-like {
+  outline: none;
+}
+
+button.action-like i {
+  font-size: 20px;
 }
 
 footer {

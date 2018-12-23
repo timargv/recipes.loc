@@ -12,7 +12,7 @@
     <div class="">
         <div class="row">
             <div class="col-12 pr-sm-0">
-                <div class="card mb-3">
+                <div class="card mb-3 border-0 shadow-sm">
                     {{--<div class="card-header">--}}
                         {{--{{ $title }}--}}
                     {{--</div>--}}

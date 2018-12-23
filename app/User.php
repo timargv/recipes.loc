@@ -51,16 +51,33 @@ class User extends Authenticatable
         }
     }
 
+
+    // Получить все посты этого пользователя
     public function walls()
     {
         return $this->hasMany(Wall::class);
     }
 
+    // Получить все комментария этого пользователя
+    public function comments()
+    {
+        return $this->hasMany(Wall::class);
+    }
 
     public function getDate()
     {
         return Carbon::createFromFormat('d/m/y', $this->date)->format('F d, Y');
     }
 
+
+    public function getComments()
+    {
+        return $this->comments()->where('user_id', auth()->user())->get();
+    }
+
+    public function scopeForUser($query, User $user)
+    {
+        return $query->where('user_id', $user->id);
+    }
 
 }

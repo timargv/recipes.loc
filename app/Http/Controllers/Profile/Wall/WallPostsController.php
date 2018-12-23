@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile\Wall;
 
+use App\Comment;
 use App\User;
 use App\Wall;
 use Illuminate\Http\Request;
@@ -19,11 +20,19 @@ class WallPostsController extends Controller
         return view('profile.wall.create_messages');
     }
 
+    public function show($user, $wall_message_id) {
+
+        $wall_message = Wall::where('id', $wall_message_id)->firstOrFail();
+        $comments = Comment::where('wall_message_id', $wall_message_id)->orderByDesc('created_at')->paginate(5);
+
+        return view('profile.wall.show', compact('comments', 'user', 'wall_message'));
+    }
+
     //
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
             'description' => 'required|string|max:3000',
         ]);
 

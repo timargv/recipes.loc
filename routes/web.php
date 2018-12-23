@@ -27,11 +27,20 @@ Route::group([
 
         Route::group(['as' => 'wall.messages.', 'namespace' => 'Wall'], function () {
             Route::get('/create', 'WallPostsController@create')->name('create');
+            Route::get('/wall-{user}_{message}', 'WallPostsController@show')->name('show.message');
             Route::post('/', 'WallPostsController@store')->name('store');
             Route::delete('/{message}', 'WallPostsController@wall_message_destroy')->name('destroy');
+
+            Route::group(['as' => 'comments.'], function () {
+               Route::get('/comments', 'CommentsController@index')->name('index');
+               Route::post('/wall{user}/{wall_message_id}/add-comment', 'CommentsController@store')->name('store');
+            });
+
         });
 
+
     });
+
 
     Route::group(['as' => 'user.', 'namespace' => 'Users'], function () {
         Route::get('/people', 'UsersController@index')->name('index');
