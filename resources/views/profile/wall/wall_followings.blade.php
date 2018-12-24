@@ -6,7 +6,7 @@
     <div class="my-0 pl-sm-3 row profile_wall_message">
 
         @foreach($wall_messages as $wall_message)
-            <div id="wall{{ $wall_message->id }}" class="col-md-6 col-lg-4 pl-sm-0">
+            <div id="wall{{ $wall_message->id }}" class="col-12 pl-sm-0">
                 <div class="card mb-4 border-0 shadow-sm">
                     <div class="card-header bg-transparent border-0 px-2 py-2">
 
@@ -61,24 +61,7 @@
                             <a class="text-black-50 font-weight-bold" href="#">ещё</a>
                         </p>
 
-                        <div class="my-1 small card-subtitle text-muted pt-2">
-                            <form method="POST" action="{{ route('profile.wall.messages.comments.store', [auth()->user(), $wall_message->id]) }}" class="d-flex bd-highlight" style="text-decoration: none">
-                                @csrf
-                                <div class="align-self-top">
-                                    <img class="rounded-circle" src="https://via.placeholder.com/30/DDDDDD/FFFFFF/" alt="Card image">
-                                </div>
-                                <div class="align-self-center bd-highlight flex-grow-1">
-                                    <span class="px-2 py-2 card-subtitle text-muted text-dark d-block">
-                                        <textarea class="addComment" placeholder="{{ __('comments.Comment') }}" name="body"></textarea>
-                                    </span>
-                                </div>
-                                <div class="align-self-top">
-                                    <button class="btn btn-sm p-1 text-center rounded-circle btn-primary " style="width: 28px; margin-top: 2px;">
-                                        <i class="fa fa-send-o"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        @include('profile.wall._comment_add_form')
                         <p class="card-text"><small class="text-muted">{{ $wall_message->created_at->diffForHumans()}}</small></p>
                     </div>
                 </div>
