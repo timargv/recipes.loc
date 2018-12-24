@@ -21,10 +21,15 @@ class WallPostsController extends Controller
     }
 
     // SHOW WALL MESSAGE
-    public function show($user, $wall_message_id) {
+    public function show($user, $wall_message_id, Comment $comment) {
 
         $wall_message = Wall::where('id', $wall_message_id)->firstOrFail();
-        $comments = Comment::where('wall_message_id', $wall_message_id)->orderByDesc('created_at')->paginate(5);
+        $comments = Comment::where('wall_message_id', $wall_message_id)->orderByDesc('created_at')->paginate(12);
+
+
+
+
+//        $reply_user = $comment->replies()->with('user_id', '=', $wall_message->reply_id)->get();
 
         return view('profile.wall.show', compact('comments', 'user', 'wall_message'));
     }

@@ -18,7 +18,6 @@ class Comment extends Model
         return $this->hasMany(self::class, 'id', 'reply_id');
     }
 
-
     // Получить Пост с данным комментарием
     public function wall()
     {
@@ -36,9 +35,6 @@ class Comment extends Model
         return $query->where('user_id', $user->id);
     }
 
-    public function getReplyUser($query)
-    {
-        return $this->user()->where('user_id', $query);
-    }
+
 
 }

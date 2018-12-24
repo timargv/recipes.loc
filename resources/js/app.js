@@ -40,38 +40,9 @@ require('./bootstrap');
 // });
 
 
-$('a.replay').click(function() {
-    var fieldID = $(this).attr("id");
-    var fieldName = $(this).attr('title');
-    var CommentId = $(this).attr('comment-id');
-    var link      = $('a.replay_user_name');
-    $('input.replay_id' ).val(fieldID);
-    link.text(fieldName);
-    link.attr('href', '#' + CommentId);
-    $('i#replay_user_name_id').addClass('fa fa-close');
-});
 
-$('i#replay_user_name_id').click(function () {
-    var link      = $('a.replay_user_name');
-    link.text('');
-    link.attr('href', '');
-    $('input.replay_id' ).val();
-    $('i#replay_user_name_id').removeClass('fa fa-close');
-});
 
-$('ul.pagination').hide();
-$(function() {
-    $('.infinite-scroll').jscroll({
-        autoTrigger: true,
-        loadingHtml: '<div class="text-center py-3"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span></div>',
-        padding: 0,
-        nextSelector: '.pagination li.active + li a',
-        contentSelector: 'div.infinite-scroll',
-        callback: function() {
-            $('ul.pagination').remove();
-        }
-    });
-});
+
 
 $('textarea.addComment').keyup(function(){
     $(this).height(10);
@@ -135,6 +106,40 @@ $(document).ready(function() {
     });
 
 
+    $('a.replay').click(function () {
+        var fieldID = $(this).attr("id");
+        var fieldName = $(this).attr('title');
+        var CommentId = $(this).attr('comment-id');
+        var link = $('a.replay_user_name');
+        $('input.replay_id').val(CommentId);
+        link.text(fieldName);
+        link.attr('href', '#' + CommentId);
+        $('i#replay_user_name_id').addClass('fa fa-close');
+    });
+
+
+    $('i#replay_user_name_id').click(function () {
+        var link = $('a.replay_user_name');
+        link.text('');
+        link.attr('href', '');
+        $('input.replay_id').val();
+        $('i#replay_user_name_id').removeClass('fa fa-close');
+    });
+
+
 });
 
 
+$('ul.pagination').hide();
+$(function() {
+    $('.infinite-scroll').jscroll({
+        autoTrigger: true,
+        loadingHtml: '<div class="text-center py-3"> <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><span class="sr-only">Loading...</span></div>',
+        padding: 0,
+        nextSelector: '.pagination li.active + li a',
+        contentSelector: 'div.infinite-scroll',
+        callback: function() {
+            $('ul.pagination').remove();
+        }
+    });
+});
