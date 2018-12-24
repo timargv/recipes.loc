@@ -6,6 +6,58 @@
  */
 
 require('./bootstrap');
+// import VueResource from "vue-resource"
+//
+// window.Vue = require('vue');
+// Vue.use(VueResource);
+//
+// Vue.component('comment', require('./components/CommentsComponent.vue'));
+// // Vue.component('comment', require('./components/ExampleComponent.vue'));
+// const app = new Vue({
+//     el: '#app'
+// });
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+// const app = new Vue({
+//     el: '#app'
+// });
+
+
+$('a.replay').click(function() {
+    var fieldID = $(this).attr("id");
+    var fieldName = $(this).attr('title');
+    var CommentId = $(this).attr('comment-id');
+    var link      = $('a.replay_user_name');
+    $('input.replay_id' ).val(fieldID);
+    link.text(fieldName);
+    link.attr('href', '#' + CommentId);
+    $('i#replay_user_name_id').addClass('fa fa-close');
+});
+
+$('i#replay_user_name_id').click(function () {
+    var link      = $('a.replay_user_name');
+    link.text('');
+    link.attr('href', '');
+    $('input.replay_id' ).val();
+    $('i#replay_user_name_id').removeClass('fa fa-close');
+});
 
 $('ul.pagination').hide();
 $(function() {
@@ -72,10 +124,10 @@ $(document).ready(function() {
             success:function(data){
                 console.log(data.success);
                 if(jQuery.isEmptyObject(data.success.attached)){
-                    cObj.find("i").toggleClass("fa-heart-o fa-heart");
+                    cObj.find("i").toggleClass('fa-heart-o fa-heart').toggleClass('text-black-50 text-danger');
                     $(".count-like-" + wall_message_id).text(parseInt(c)-1);
                 }else{
-                    cObj.find("i").toggleClass("fa-heart fa-heart-o");
+                    cObj.find("i").toggleClass('fa-heart fa-heart-o').toggleClass('text-danger text-black-50');
                     $(".count-like-" + wall_message_id ).text(parseInt(c)+1);
                 }
             }
@@ -85,27 +137,4 @@ $(document).ready(function() {
 
 });
 
-// window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-// const app = new Vue({
-//     el: '#app'
-// });

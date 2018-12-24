@@ -34,12 +34,23 @@ Route::group([
             Route::group(['as' => 'comments.'], function () {
                Route::get('/comments', 'CommentsController@index')->name('index');
                Route::post('/wall{user}/{wall_message_id}/add-comment', 'CommentsController@store')->name('store');
+               Route::post('/comments/{commentId}/{type}', 'CommentController@update')->name('update');
+
             });
 
         });
 
 
     });
+
+
+        // Route for index page
+        Route::get('comments/{pageId}', 'Profile\Wall\CommentController@index');
+        // Route for store comment
+        Route::post('comments', 'Profile\Wall\CommentsController@store');
+        // Route for update comment
+        Route::post('comments/{commentId}/{type}', 'Profile\Wall\CommentController@update');
+
 
 
     Route::group(['as' => 'user.', 'namespace' => 'Users'], function () {

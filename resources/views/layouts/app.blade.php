@@ -21,7 +21,8 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
-<body id="app">
+<body>
+<div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/feed') }}" style="width: 11.3rem">
@@ -60,6 +61,6 @@
         </footer>
 
     @yield('js')
-
+</div>
 </body>
 </html>

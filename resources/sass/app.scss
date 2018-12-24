@@ -70,6 +70,15 @@ button.action-like i {
     font-size: 20px;
 }
 
+.comment-header-tools {
+    opacity: .5;
+    font-size: 14px;
+
+    i {}
+}
+
+.comment-footer-tools {}
+
 footer {
     box-shadow: 0 -.125rem .25rem rgba(0,0,0,.075)!important;
 }

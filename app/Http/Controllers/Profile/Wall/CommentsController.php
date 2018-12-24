@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Profile\Wall;
 
 use App\Comment;
+use App\CommentSpam;
+use App\CommentVote;
 use App\User;
 use App\Wall;
 use Illuminate\Http\Request;
@@ -28,14 +30,17 @@ class CommentsController extends Controller
 
         $this->validate($request, [
             'body' => 'required|string|max:3000ss',
+            'reply_id' => 'nullable|integer',
         ]);
 
         Comment::create([
             'body' => $request['body'],
             'wall_message_id' => $wall_message_id,
+            'reply_id' => $request['reply_id'],
             'user_id' => Auth::id(),
         ]);
 
         return redirect()->back()->with('success', 'Комментарий Добавлен');
     }
+
 }

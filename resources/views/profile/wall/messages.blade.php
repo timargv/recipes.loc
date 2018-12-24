@@ -38,10 +38,11 @@
                         <div class="mb-1">
                             <nav class="nav d-flex bd-highlight" style="font-size: 1.3rem">
                                 @if($wall_message->isLikedBy(auth()->user()))
-                                    <button class="align-self-center bd-highlight mr-3 btn bg-transparent p-0 action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left text-primary fa fa-heart"></i></button>
+                                    <button class="align-self-center bd-highlight mr-1 btn bg-transparent p-0 action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left fa fa-heart text-danger"></i></button>
                                 @else
-                                    <button class="align-self-center bd-highlight mr-3 btn bg-transparent p-0 action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left text-black-50 fa fa-heart-o"></i></button>
+                                    <button class="align-self-center bd-highlight mr-1 btn bg-transparent p-0 text-muted action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left fa fa-heart-o text-black-50"></i></button>
                                 @endif
+
                                 <a class="align-self-center bd-highlight mr-1" href="{{ route('profile.wall.messages.show.message', ['user' => $wall_message->user, 'message' => $wall_message]) }}"><i class="fa fa-comment-o text-black-50"></i></a>
                                 <span class="align-self-center bd-highlight text-muted small text-black-50">{{ $wall_message->getCommentsCount() }}</span>
                                 {{--<a class="mr-2" href="#"><i class="fa fa-share text-dark"></i></a>--}}

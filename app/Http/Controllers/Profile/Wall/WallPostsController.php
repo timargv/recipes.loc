@@ -20,6 +20,7 @@ class WallPostsController extends Controller
         return view('profile.wall.create_messages');
     }
 
+    // SHOW WALL MESSAGE
     public function show($user, $wall_message_id) {
 
         $wall_message = Wall::where('id', $wall_message_id)->firstOrFail();

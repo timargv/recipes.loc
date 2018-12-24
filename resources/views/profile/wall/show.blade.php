@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="row">
-        <div class="p-0 p-md-auto col-md-8 shadow-sm">
-            <div class="card rounded-0 border-0">
+        <div class="p-0 pl-md-3 p-md-auto col-md-8">
+            <div class="shadow-sm card rounded-0 border-0">
                 <div class="card-header bg-transparent">
                     <div class="d-flex bd-highlight">
                         <div class="align-self-center">
@@ -44,12 +44,12 @@
                     <div class="mb-1">
                         <nav class="nav d-flex bd-highlight" style="font-size: 1.3rem">
                             @if($wall_message->isLikedBy(auth()->user()))
-                                <button class="align-self-center bd-highlight mr-1 btn bg-transparent p-0 action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left text-black-50 fa fa-heart"></i></button>
+                                <button class="align-self-center bd-highlight mr-1 btn bg-transparent p-0 action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left fa fa-heart text-danger"></i></button>
                             @else
-                                <button class="align-self-center bd-highlight mr-1 btn bg-transparent p-0 text-muted action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left text-black-50 fa fa-heart-o"></i></button>
+                                <button class="align-self-center bd-highlight mr-1 btn bg-transparent p-0 text-muted action-like" data-id="{{ $wall_message->id }}"><i id="favIcon-{{ $wall_message->id }}" class="float-left fa fa-heart-o text-black-50"></i></button>
                             @endif
                             <div class="align-self-center bd-highlight mr-4 text-muted small text-black-50">
-                                <span class="count-lcard-footer border-0 bg-transparent position-relativeike-{{ $wall_message->id }}">{{ $wall_message->fans()->count() }}</span>
+                                <span class="count-like-{{ $wall_message->id }} border-0 bg-transparent position-relative">{{ $wall_message->fans()->count() }}</span>
                             </div>
                             {{--<a class="align-self-center bd-highlight mr-1" href="{{ route('profile.wall.messages.show.message', ['user' => $wall_message->user, 'message' => $wall_message]) }}"><i class="fa fa-comment-o text-dark"></i></a>--}}
                             {{--<span class="align-self-center bd-highlight text-muted small text-black-50">{{ $wall_message->getCommentsCount() }}</span>--}}

@@ -1,4 +1,5 @@
-<div class="w-100 ml-md-3">
+<div class="row ml-md-0">
+    <div class="mx-3 ml-sm-0 mr-sm-0 mr-md-3 w-100">
     @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -22,4 +23,5 @@
             {{ session('info') }}
         </div>
     @endif
+    </div>
 </div>
