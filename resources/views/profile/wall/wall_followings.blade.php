@@ -7,12 +7,12 @@
                 <div class="card mb-4 border-0 shadow-sm">
                     <div class="card-header bg-transparent border-0 px-2 py-2">
 
-                        <div class="d-flex bd-highlight">
+                        <a href="{{ route('profile.show', $wall_message->user) }}" class="d-flex bd-highlight text-decoration">
                             <div class="align-self-center">
-                                <img class="rounded-circle" src="{{ $user->getImageThumbnail($wall_message->user->id) }}" width="30px">
+                                <img class="rounded-circle" src="{{ $user->getImageThumbnail($wall_message->user->id) }}" width="30px" height="30px">
                             </div>
                             <div class="align-self-center bd-highlight">
-                                <span class="pl-2 card-subtitle text-muted text-dark">
+                                <span class="pl-2 card-subtitle  text-dark">
                                     @if ($wall_message->user->first_name && $wall_message->user->last_name)
                                         {{ $wall_message->user->first_name }} {{ $wall_message->user->last_name }}
                                     @else
@@ -31,7 +31,7 @@
                                     </form>
                                 </div>
                             @endif
-                        </div>
+                        </a>
                     </div>
                     <a href="{{ route('profile.wall.messages.show.message', ['user' => $wall_message->user, 'message' => $wall_message]) }}">
                         <img class="card-img-top rounded-0" src="https://via.placeholder.com/293x280/DDDDDD/FFFFFF/?text=Laravel" alt="Card image">

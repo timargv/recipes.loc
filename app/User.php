@@ -125,7 +125,7 @@ class User extends Authenticatable
         {
             return '/storage/uploads/users/no-avatar.png';
         }
-        $url = 'storage/uploads/users/'. auth()->id() .'/original/';
+        $url = 'storage/uploads/users/'. $userId .'/original/';
         $path = $url . $user->avatar;
 
         return $path;

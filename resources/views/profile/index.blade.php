@@ -33,6 +33,7 @@
                                 <ul class="list-unstyled">
                                     <li><b>E-mail:</b> {{ $user->email }}</li>
                                 </ul>
+                                <a href="{{ route('profile.edit') }}">РЕд</a>
                             </div>
                         </div>
                     </div>

@@ -78,6 +78,11 @@ button.action-like i {
     i {}
 }
 
+.text-decoration,
+.text-decoration:hover {
+    text-decoration: none !important;
+}
+
 .comment-footer-tools {}
 
 footer {

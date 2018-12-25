@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         ]);
         User::create([
                 'name' => 'user1',
-                'email' => 'user@mail.ru',
+                'email' => 'bloodwoman121993@mail.ru',
                 'first_name' => 'Вика',
                 'last_name' => 'Рагимханова',
                 'email_verified_at' => now(),
