@@ -6,10 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Overtrue\LaravelFollow\Traits\CanFavorite;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Overtrue\LaravelFollow\Traits\CanLike;
+
 
 /**
  * @property int $id
@@ -30,7 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'first_name', 'email', 'password',
+        'name', 'last_name', 'first_name', 'email', 'password'
     ];
 
     /**
@@ -78,6 +81,55 @@ class User extends Authenticatable
     public function scopeForUser($query, User $user)
     {
         return $query->where('user_id', $user->id);
+    }
+
+    public function uploadAvatar($image)
+    {
+        if($image == null) { return; }
+        $this->removeAvatar();
+
+        $filename  =  auth()->id() . '_'. str_random(10) . '.' . $image->extension();
+//        $image->storeAs('uploads/persons/original', $filename);
+
+//        $path = public_path('uploads/users/'. auth()->id() .'/original/' . $filename);
+//        $path_th = public_path('uploads/users/'. auth()->id() .'/thumbnail/thumbnail_' . $filename);
+
+        $path = 'public/uploads/users/'. auth()->id() .'/original/' ;
+        $path_th = 'public/uploads/users/'. auth()->id() .'/thumbnail/' ;
+
+
+        $image->storeAs($path, $filename);
+        $image->storeAs($path_th, 'thumbnail_'. $filename);
+
+
+//        Image::make($image)->widen(100)->save($path_th);
+//        Image::make($image->getRealPath())->save($path);
+
+        $this->avatar = $filename;
+        $this->save();
+    }
+
+    public function removeAvatar()
+    {
+        if($this->avatar != null)
+        {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+    }
+
+    public function getImageThumbnail($userId)
+    {
+        $user = User::where('id', '=', $userId)->firstOrFail();
+
+        if($user->avatar == null)
+        {
+            return '/storage/uploads/users/no-avatar.png';
+        }
+        $url = 'storage/uploads/users/'. auth()->id() .'/original/';
+        $path = $url . $user->avatar;
+
+        return $path;
+
     }
 
 }

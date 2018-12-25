@@ -11,7 +11,8 @@
 // Font Awesome
 @import "~font-awesome/scss/font-awesome.scss";
 
-button:focus,button:active,button:hover {
+button:focus,button:active,button:hover,
+a.btn:focus, a.btn:active, a.btn:hover {
     box-shadow: none !important;
 }
 

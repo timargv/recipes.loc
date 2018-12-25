@@ -51,8 +51,9 @@
                             <div class="align-self-center bd-highlight mr-4 text-muted small text-black-50">
                                 <span class="count-like-{{ $wall_message->id }} border-0 bg-transparent position-relative">{{ $wall_message->fans()->count() }}</span>
                             </div>
-                            {{--<a class="align-self-center bd-highlight mr-1" href="{{ route('profile.wall.messages.show.message', ['user' => $wall_message->user, 'message' => $wall_message]) }}"><i class="fa fa-comment-o text-dark"></i></a>--}}
-                            {{--<span class="align-self-center bd-highlight text-muted small text-black-50">{{ $wall_message->getCommentsCount() }}</span>--}}
+
+                            <span class="align-self-center bd-highlight mr-2" href="#"><i class="fa fa-comment-o text-black-50"></i></span>
+                            <span class="align-self-center bd-highlight text-muted small text-black-50">{{ $wall_message->getCommentsCount() }}</span>
                             {{--<a class="mr-2" href="#"><i class="fa fa-share text-dark"></i></a>--}}
                             <a class="align-self-center bd-highlight ml-auto" href="#"><i class="fa fa-bookmark-o text-black-50"></i></a>
                         </nav>

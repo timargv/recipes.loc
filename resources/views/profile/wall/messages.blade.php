@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <a href="{{ route('profile.wall.messages.show.message', ['user' => $wall_message->user, 'message' => $wall_message]) }}">
-                    <img class="card-img-top rounded-0" src="https://via.placeholder.com/293x280/DDDDDD/FFFFFF/?text=Laravel" alt="Card image">
+                        <img class="card-img-top rounded-0" src="https://via.placeholder.com/293x280/DDDDDD/FFFFFF/?text=Laravel" alt="Card image">
                     </a>
 
                     <div class="card-body pt-2 pb-2">
@@ -57,22 +57,17 @@
                         </p>
 
                         <div class="my-1 small card-subtitle text-muted pt-2">
-                            <form method="POST" action="{{ route('profile.wall.messages.comments.store', [auth()->user(), $wall_message->id]) }}" class="d-flex bd-highlight" style="text-decoration: none">
-                                @csrf
-                                <div class="align-self-top">
+                            <a href="{{  route('profile.wall.messages.show.message', ['user' => $wall_message->user, 'message' => $wall_message]) }}" class="d-flex bd-highlight" style="text-decoration: none">
+                                <div class="align-self-center">
                                     <img class="rounded-circle" src="https://via.placeholder.com/30/DDDDDD/FFFFFF/" alt="Card image">
                                 </div>
                                 <div class="align-self-center bd-highlight flex-grow-1">
-                                    <span class="px-2 py-2 card-subtitle text-muted text-dark d-block">
-                                        <textarea class="addComment" placeholder="{{ __('comments.Comment') }}" name="body"></textarea>
+                                    <span class="px-2  text-muted">
+                                        {{ __('comments.AddCommentText') }}
                                     </span>
                                 </div>
-                                <div class="align-self-top">
-                                    <button class="btn btn-sm p-1 text-center rounded-circle btn-primary " style="width: 28px; margin-top: 2px;">
-                                        <i class="fa fa-send-o"></i>
-                                    </button>
-                                </div>
-                            </form>
+
+                            </a>
                         </div>
                         <p class="card-text"><small class="text-muted">{{ $wall_message->created_at->diffForHumans()}}</small></p>
                     </div>

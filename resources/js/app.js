@@ -59,7 +59,9 @@ $(document).ready(function() {
     });
 
 
-    $('.action-follow').click(function(){
+    var bodyObj = 'body';
+
+    $(bodyObj).on('click', '.action-follow', function(event){
         var user_id = $(this).data('id');
         var cObj = $(this);
         var c = $(this).parent("div").find(".tl-follower").text();
@@ -82,11 +84,10 @@ $(document).ready(function() {
         });
     });
 
-    $('.action-like').click(function(){
+    $(bodyObj).on('click', '.action-like', function(event){
         var wall_message_id = $(this).data('id');
         var cObj = $(this);
         var c = $(".count-like-" + wall_message_id ).text();
-
 
         $.ajax({
             type:'POST',
@@ -106,7 +107,8 @@ $(document).ready(function() {
     });
 
 
-    $('a.replay').click(function () {
+
+    $(bodyObj).on('click', 'a.replay', function(event){
         var fieldID = $(this).attr("id");
         var fieldName = $(this).attr('title');
         var CommentId = $(this).attr('comment-id');
@@ -114,16 +116,16 @@ $(document).ready(function() {
         $('input.replay_id').val(CommentId);
         link.text(fieldName);
         link.attr('href', '#' + CommentId);
-        $('i#replay_user_name_id').addClass('fa fa-close');
+        $('#replay_user_name_id').addClass('fa fa-close');
     });
 
 
-    $('i#replay_user_name_id').click(function () {
+    $(bodyObj).on('click', '#replay_user_name_id', function(event){
         var link = $('a.replay_user_name');
         link.text('');
         link.attr('href', '');
         $('input.replay_id').val();
-        $('i#replay_user_name_id').removeClass('fa fa-close');
+        $('#replay_user_name_id').removeClass('fa fa-close');
     });
 
 

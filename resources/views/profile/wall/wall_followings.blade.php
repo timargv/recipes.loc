@@ -1,7 +1,4 @@
 
-
-
-
 <div class="infinite-scroll">
     <div class="my-0 pl-sm-3 row profile_wall_message">
 
@@ -12,7 +9,7 @@
 
                         <div class="d-flex bd-highlight">
                             <div class="align-self-center">
-                                <img class="rounded-circle" src="https://via.placeholder.com/30/DDDDDD/FFFFFF/" alt="Card image">
+                                <img class="rounded-circle" src="{{ $user->getImageThumbnail($wall_message->user->id) }}" width="30px">
                             </div>
                             <div class="align-self-center bd-highlight">
                                 <span class="pl-2 card-subtitle text-muted text-dark">

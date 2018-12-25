@@ -12,6 +12,7 @@ class ProfileService
         /** @var User $user */
         $user = User::findOrFail($id);
         $user->generatePassword($request->get('password'));
+        $user->uploadAvatar($request->file('avatar'));
         $user->update($request->only('name', 'last_name', 'first_name'));
     }
 }

@@ -31,6 +31,7 @@ class ProfileEditRequest extends FormRequest
             ],
             'last_name' => 'required|string|max:255',
             'first_name' => 'required|string|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg'
         ];
     }
 }

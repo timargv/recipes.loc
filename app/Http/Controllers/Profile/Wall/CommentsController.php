@@ -10,6 +10,7 @@ use App\Wall;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Psy\Command\Command;
 
 class CommentsController extends Controller
 {
@@ -41,6 +42,21 @@ class CommentsController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Комментарий Добавлен');
+    }
+
+
+    public function destroy($user, $wall_message, $comment)
+    {
+
+        $comment = Comment::where(['user_id' => $user, 'id' => $comment, 'wall_message_id' => $wall_message])->firstOrFail();
+
+        if ($comment->user_id == Auth::id() || $comment->wall->user_id == Auth::id()) {
+            $comment->delete();
+            return back()->with('success', 'Удалено');
+        }
+        return back()->with('error', 'У Вас нет прав');
+
+//        return redirect()->route('profile.show', Auth::user())->with('warning', 'У Вас нет прав');
     }
 
 }
