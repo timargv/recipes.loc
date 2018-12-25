@@ -9,7 +9,7 @@
                 <div class="card-header bg-transparent">
                     <div class="d-flex bd-highlight">
                         <div class="align-self-center">
-                            <img class="rounded-circle" src="https://via.placeholder.com/30/DDDDDD/FFFFFF/" alt="Card image">
+                            <img class="rounded-circle" src="{{ $wall_message->user->getImageThumbnail($wall_message->user->id) }}" width="30px" height="30px" alt="Card image">
                         </div>
                         <div class="align-self-center bd-highlight">
                             <span class="pl-2 card-subtitle text-muted text-dark">
